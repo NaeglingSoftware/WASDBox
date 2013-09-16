@@ -35,7 +35,7 @@ public class DisplayTester {
 		GL11.glClear(GL11.GL_COLOR_BUFFER_BIT | GL11.GL_DEPTH_BUFFER_BIT);
 		GL11.glColor3f(0.5f, 0.5f, 1.0f);
 
-		while(Keyboard.next()){
+		while(Keyboard.next()) {
 
 			switch(Keyboard.getEventKey()){
 				case Keyboard.KEY_W: y+=10; break;
