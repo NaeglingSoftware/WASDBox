@@ -36,7 +36,7 @@ public class DisplayTester {
 
 		while(Keyboard.next()) {
 
-			switch(Keyboard.getEventKey()){
+			switch(Keyboard.getEventKey()) {
 				case Keyboard.KEY_W: y+=10; break;
 				case Keyboard.KEY_A: x-=10; break;
 				case Keyboard.KEY_S: y-=10; break;
