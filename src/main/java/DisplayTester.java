@@ -37,14 +37,15 @@ public class DisplayTester {
 		Keyboard.enableRepeatEvents(true);
 
 		while(Keyboard.next()) {
-
-			switch(Keyboard.getEventKey()) {
-				case Keyboard.KEY_W: y+=10; break;
-				case Keyboard.KEY_A: x-=10; break;
-				case Keyboard.KEY_S: y-=10; break;
-				case Keyboard.KEY_D: x+=10; break;
-				case Keyboard.KEY_Q: size++; break;
-				case Keyboard.KEY_E: size--; break;
+			if(Keyboard.getEventKeyState()) {
+				switch(Keyboard.getEventKey()) {
+					case Keyboard.KEY_W: y+=10; break;
+					case Keyboard.KEY_A: x-=10; break;
+					case Keyboard.KEY_S: y-=10; break;
+					case Keyboard.KEY_D: x+=10; break;
+					case Keyboard.KEY_Q: size++; break;
+					case Keyboard.KEY_E: size--; break;
+				}
 			}
 		}
 		GL11.glBegin(GL11.GL_QUADS);
