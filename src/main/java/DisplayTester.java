@@ -34,6 +34,8 @@ public class DisplayTester {
 		GL11.glClear(GL11.GL_COLOR_BUFFER_BIT | GL11.GL_DEPTH_BUFFER_BIT);
 		GL11.glColor3f(0.5f, 0.5f, 1.0f);
 
+		Keyboard.enableRepeatEvents(true);
+
 		while(Keyboard.next()) {
 
 			switch(Keyboard.getEventKey()) {
