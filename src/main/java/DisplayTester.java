@@ -25,7 +25,7 @@ public class DisplayTester {
         Display.destroy();
     }
 
-    int x = 100, y = 100, size = 25;
+    int x = 100, y = 100, size = 25, rotation = 0;
 
     public void drawStuff() {
         GL11.glClear(GL11.GL_COLOR_BUFFER_BIT | GL11.GL_DEPTH_BUFFER_BIT);
@@ -42,6 +42,8 @@ public class DisplayTester {
                     case Keyboard.KEY_D: x+=10; break;
                     case Keyboard.KEY_Q: size++; break;
                     case Keyboard.KEY_E: size--; break;
+                    case Keyboard.KEY_Z: rotation += 5; break;
+                    case Keyboard.KEY_C: rotation -= 5; break;
                 }
             }
         }
@@ -55,11 +57,16 @@ public class DisplayTester {
         else if (x > 800 - size)
             x = 800 - size;
 
-        GL11.glBegin(GL11.GL_QUADS);
-        GL11.glVertex2f(x - size, y - size);
-        GL11.glVertex2f(x - size, y + size);
-        GL11.glVertex2f(x + size, y + size);
-        GL11.glVertex2f(x + size, y - size);
-        GL11.glEnd();
+        GL11.glPushMatrix();
+            GL11.glTranslatef(x, y, 0);
+            GL11.glRotatef(rotation, 0f, 0f, 1f);
+            GL11.glTranslatef(-x, -y, 0);
+            GL11.glBegin(GL11.GL_QUADS);
+                GL11.glVertex2f(x - size, y - size);
+                GL11.glVertex2f(x + size, y - size);
+                GL11.glVertex2f(x + size, y + size);
+                GL11.glVertex2f(x - size, y + size);
+            GL11.glEnd();
+        GL11.glPopMatrix();
     }
 }
