@@ -3,7 +3,6 @@ import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.*;
 
 public class DisplayTester {
-
 	public void start() {
 
 		try {
@@ -20,11 +19,9 @@ public class DisplayTester {
 		GL11.glMatrixMode(GL11.GL_MODELVIEW);
 
 		while (!Display.isCloseRequested()) {
-
 			drawStuff();
 			Display.update();
 		}
-
 		Display.destroy();
 	}
 
@@ -36,9 +33,9 @@ public class DisplayTester {
 
 		Keyboard.enableRepeatEvents(true);
 
-		while(Keyboard.next()) {
-			if(Keyboard.getEventKeyState()) {
-				switch(Keyboard.getEventKey()) {
+		while (Keyboard.next()) {
+			if (Keyboard.getEventKeyState()) {
+				switch (Keyboard.getEventKey()) {
 					case Keyboard.KEY_W: y+=10; break;
 					case Keyboard.KEY_A: x-=10; break;
 					case Keyboard.KEY_S: y-=10; break;
