@@ -39,7 +39,7 @@ public class Quad {
 		size -= num;
 	}
 
-	public void rotate(int num){
+	public void rotate(int num) {
 		rotation += num;
 	}
 
