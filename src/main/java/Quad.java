@@ -46,15 +46,28 @@ public class Quad {
 	public void update() {
 		while (Keyboard.next()) {
 			if (Keyboard.getEventKeyState()) {
-				switch (Keyboard.getEventKey()) {
-					case Keyboard.KEY_W: moveUp(10); break;
-					case Keyboard.KEY_A: moveLeft(10); break;
-					case Keyboard.KEY_S: moveDown(10); break;
-					case Keyboard.KEY_D: moveRight(10); break;
-					case Keyboard.KEY_Q: grow(1); break;
-					case Keyboard.KEY_E: shrink(1); break;
-					case Keyboard.KEY_Z: rotate(5); break;
-					case Keyboard.KEY_C: rotate(-5); break;
+				if (Keyboard.isKeyDown(Keyboard.KEY_LSHIFT) || Keyboard.isKeyDown(Keyboard.KEY_RSHIFT))
+					switch (Keyboard.getEventKey()) {
+						case Keyboard.KEY_W: moveUp(1); break;
+						case Keyboard.KEY_A: moveLeft(1); break;
+						case Keyboard.KEY_S: moveDown(1); break;
+						case Keyboard.KEY_D: moveRight(1); break;
+						case Keyboard.KEY_Q: grow(1); break;
+						case Keyboard.KEY_E: shrink(1); break;
+						case Keyboard.KEY_Z: rotate(1); break;
+						case Keyboard.KEY_C: rotate(-1); break;
+					}
+				else {
+					switch (Keyboard.getEventKey()) {
+						case Keyboard.KEY_W: moveUp(10); break;
+						case Keyboard.KEY_A: moveLeft(10); break;
+						case Keyboard.KEY_S: moveDown(10); break;
+						case Keyboard.KEY_D: moveRight(10); break;
+						case Keyboard.KEY_Q: grow(1); break;
+						case Keyboard.KEY_E: shrink(1); break;
+						case Keyboard.KEY_Z: rotate(5); break;
+						case Keyboard.KEY_C: rotate(-5); break;
+					}
 				}
 			}
 		}
