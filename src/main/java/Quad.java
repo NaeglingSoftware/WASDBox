@@ -7,6 +7,9 @@ public class Quad {
 	private int y;
 	private int size;
 	private int rotation;
+	private double red = 100;
+	private double blue = 0;
+	private double green = 0;
 
 	public Quad(int xCoord, int yCoord, int s, int r) {
 		x = xCoord;
@@ -43,6 +46,59 @@ public class Quad {
 		rotation += num;
 	}
 
+	public void incrementColor(double num) {
+
+		checkColorValues();
+
+		if (red < 100 && green == 0 && blue == 0)
+			red += num;
+		else if (red == 100 && green < 100 && blue == 0)
+			green += num;
+		else if (red > 0 && green == 100 && blue == 0)
+			red -= num;
+		else if (red == 0 && green == 100 && blue < 100)
+			blue += num;
+		else if (red ==0 && green > 0 && blue == 100)
+			green -= num;
+		else if (red < 100 && green == 0 && blue == 100)
+			red += num;
+		else if (red == 100 && green == 0 && blue > 0)
+			blue -= num;
+	}
+
+	public void decrementColor(int num) {
+
+		checkColorValues();
+
+		if (red == 0 && green < 100 && blue == 100)
+			green += num;
+		else if (red == 0 && green == 100 && blue > 0)
+			blue -= num;
+		else if (red < 100 && green == 100 && blue == 0)
+			red += num;
+		else if (red == 100 && green > 0 && blue == 0)
+			green -= num;
+		else if (red == 100 && green == 0 && blue < 100)
+			blue += num;
+		else if (red > 0 && green == 0 && blue == 100)
+			red -= num;
+	}
+
+	private void checkColorValues() {
+		if (red > 100)
+			red = 100;
+		else if (green > 100)
+			green = 100;
+		else if (blue > 100)
+			blue = 100;
+		else if (red < 0)
+			red = 0;
+		else if (green < 0)
+			green = 0;
+		else if (blue < 0)
+			blue = 0;
+	}
+
 	public void update() {
 		while (Keyboard.next()) {
 			if (Keyboard.getEventKeyState()) {
@@ -56,6 +112,8 @@ public class Quad {
 						case Keyboard.KEY_E: shrink(1); break;
 						case Keyboard.KEY_Z: rotate(1); break;
 						case Keyboard.KEY_C: rotate(-1); break;
+						case Keyboard.KEY_2: incrementColor(1); break;
+						case Keyboard.KEY_1: decrementColor(1); break;
 					}
 				else {
 					switch (Keyboard.getEventKey()) {
@@ -67,6 +125,8 @@ public class Quad {
 						case Keyboard.KEY_E: shrink(1); break;
 						case Keyboard.KEY_Z: rotate(5); break;
 						case Keyboard.KEY_C: rotate(-5); break;
+						case Keyboard.KEY_2: incrementColor(5); break;
+						case Keyboard.KEY_1: decrementColor(5); break;
 					}
 				}
 			}
@@ -86,6 +146,8 @@ public class Quad {
 
 	public void display() {
 		checkBoundaries();
+
+		GL11.glColor3d(red / 100, green / 100, blue / 100);
 
 		GL11.glPushMatrix();
 		GL11.glTranslatef(x, y, 0);
