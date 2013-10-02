@@ -3,13 +3,18 @@ import org.lwjgl.opengl.GL11;
 
 public class Quad {
 
-	private int x;
-	private int y;
-	private int size;
-	private int rotation;
+	private float x;
+	private float y;
+	private float size;
+	private float rotation;
 	private double red = 100;
 	private double blue = 0;
 	private double green = 0;
+	private float moveSpeed = 0.2f;
+	private float growSpeed = 0.02f;
+	private float rotationSpeed = 0.1f;
+	private float sizeChangeSpeed = 0.2f;
+	private float slowDownRate = 4;
 
 	public Quad(int xCoord, int yCoord, int s, int r) {
 		x = xCoord;
@@ -18,31 +23,31 @@ public class Quad {
 		rotation = r;
 	}
 
-	public void moveUp(int num) {
+	public void moveUp(float num) {
 		y += num;
 	}
 
-	public void moveDown(int num) {
+	public void moveDown(float num) {
 		y -= num;
 	}
 
-	public void moveLeft(int num) {
+	public void moveLeft(float num) {
 		x -= num;
 	}
 
-	public void moveRight(int num) {
+	public void moveRight(float num) {
 		x += num;
 	}
 
-	public void grow(int num) {
+	public void grow(float num) {
 		size += num;
 	}
 
-	public void shrink(int num) {
+	public void shrink(float num) {
 		size -= num;
 	}
 
-	public void rotate(int num) {
+	public void rotate(float num) {
 		rotation += num;
 	}
 
@@ -66,7 +71,7 @@ public class Quad {
 			blue -= num;
 	}
 
-	public void decrementColor(int num) {
+	public void decrementColor(double num) {
 
 		checkColorValues();
 
@@ -100,36 +105,29 @@ public class Quad {
 	}
 
 	public void update() {
-		while (Keyboard.next()) {
-			if (Keyboard.getEventKeyState()) {
-				if (Keyboard.isKeyDown(Keyboard.KEY_LSHIFT) || Keyboard.isKeyDown(Keyboard.KEY_RSHIFT))
-					switch (Keyboard.getEventKey()) {
-						case Keyboard.KEY_W: moveUp(1); break;
-						case Keyboard.KEY_A: moveLeft(1); break;
-						case Keyboard.KEY_S: moveDown(1); break;
-						case Keyboard.KEY_D: moveRight(1); break;
-						case Keyboard.KEY_Q: grow(1); break;
-						case Keyboard.KEY_E: shrink(1); break;
-						case Keyboard.KEY_Z: rotate(1); break;
-						case Keyboard.KEY_C: rotate(-1); break;
-						case Keyboard.KEY_2: incrementColor(1); break;
-						case Keyboard.KEY_1: decrementColor(1); break;
-					}
-				else {
-					switch (Keyboard.getEventKey()) {
-						case Keyboard.KEY_W: moveUp(10); break;
-						case Keyboard.KEY_A: moveLeft(10); break;
-						case Keyboard.KEY_S: moveDown(10); break;
-						case Keyboard.KEY_D: moveRight(10); break;
-						case Keyboard.KEY_Q: grow(1); break;
-						case Keyboard.KEY_E: shrink(1); break;
-						case Keyboard.KEY_Z: rotate(5); break;
-						case Keyboard.KEY_C: rotate(-5); break;
-						case Keyboard.KEY_2: incrementColor(5); break;
-						case Keyboard.KEY_1: decrementColor(5); break;
-					}
-				}
-			}
+		if (Keyboard.isKeyDown(Keyboard.KEY_LSHIFT ) || Keyboard.isKeyDown(Keyboard.KEY_RSHIFT )) {
+			if (Keyboard.isKeyDown(Keyboard.KEY_W)) moveUp(moveSpeed / slowDownRate);
+			if (Keyboard.isKeyDown(Keyboard.KEY_A)) moveLeft(moveSpeed / slowDownRate);
+			if (Keyboard.isKeyDown(Keyboard.KEY_S)) moveDown(moveSpeed / slowDownRate);
+			if (Keyboard.isKeyDown(Keyboard.KEY_D)) moveRight(moveSpeed / slowDownRate);
+			if (Keyboard.isKeyDown(Keyboard.KEY_Q)) grow(growSpeed / slowDownRate);
+			if (Keyboard.isKeyDown(Keyboard.KEY_E)) shrink(growSpeed / slowDownRate);
+			if (Keyboard.isKeyDown(Keyboard.KEY_Z)) rotate(rotationSpeed / slowDownRate);
+			if (Keyboard.isKeyDown(Keyboard.KEY_C)) rotate(-rotationSpeed / slowDownRate);
+			if (Keyboard.isKeyDown(Keyboard.KEY_1)) incrementColor(sizeChangeSpeed / slowDownRate);
+			if (Keyboard.isKeyDown(Keyboard.KEY_2)) decrementColor(sizeChangeSpeed / slowDownRate);
+		}
+		else {
+			if (Keyboard.isKeyDown(Keyboard.KEY_W)) moveUp(moveSpeed);
+			if (Keyboard.isKeyDown(Keyboard.KEY_A)) moveLeft(moveSpeed);
+			if (Keyboard.isKeyDown(Keyboard.KEY_S)) moveDown(moveSpeed);
+			if (Keyboard.isKeyDown(Keyboard.KEY_D)) moveRight(moveSpeed);
+			if (Keyboard.isKeyDown(Keyboard.KEY_Q)) grow(growSpeed);
+			if (Keyboard.isKeyDown(Keyboard.KEY_E)) shrink(growSpeed);
+			if (Keyboard.isKeyDown(Keyboard.KEY_Z)) rotate(rotationSpeed);
+			if (Keyboard.isKeyDown(Keyboard.KEY_C)) rotate(-rotationSpeed);
+			if (Keyboard.isKeyDown(Keyboard.KEY_1)) incrementColor(sizeChangeSpeed);
+			if (Keyboard.isKeyDown(Keyboard.KEY_2)) decrementColor(sizeChangeSpeed);
 		}
 	}
 

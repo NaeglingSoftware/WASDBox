@@ -21,7 +21,7 @@ public class DisplayTester {
 		GL11.glOrtho(0, 800, 0, 600, 1, -1);
 		GL11.glMatrixMode(GL11.GL_MODELVIEW);
 
-		Keyboard.enableRepeatEvents(true);
+		//Keyboard.enableRepeatEvents(true);
 
 		while (!Display.isCloseRequested()) {
 			drawStuff();
