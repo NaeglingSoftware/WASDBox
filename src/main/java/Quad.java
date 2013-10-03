@@ -132,11 +132,11 @@ public class Quad {
 	public void checkBoundaries() {
 		if (y < size)
 			y = size;
-		else if (x < size)
+		if (x < size)
 			x = size;
-		else if (y > 600 - size)
+		if (y > 600 - size)
 			y = 600 - size;
-		else if (x > 800 - size)
+		if (x > 800 - size)
 			x = 800 - size;
 	}
 
