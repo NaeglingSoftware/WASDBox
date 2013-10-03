@@ -52,7 +52,6 @@ public class Quad {
 	}
 
 	public void incrementColor(double num) {
-
 		checkColorValues();
 
 		if (red < 100 && green == 0 && blue == 0)
@@ -72,7 +71,6 @@ public class Quad {
 	}
 
 	public void decrementColor(double num) {
-
 		checkColorValues();
 
 		if (red == 0 && green < 100 && blue == 100)
