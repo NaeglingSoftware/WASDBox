@@ -22,6 +22,7 @@ public class DisplayTester {
 		GL11.glMatrixMode(GL11.GL_MODELVIEW);
 
 		while (!Display.isCloseRequested()) {
+			Display.sync(60);
 			drawStuff();
 			Display.update();
 		}
