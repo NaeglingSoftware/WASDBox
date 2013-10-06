@@ -134,10 +134,10 @@ public class Quad {
 			y = size;
 		if (x < size)
 			x = size;
-		if (y > 600 - size)
-			y = 600 - size;
-		if (x > 800 - size)
-			x = 800 - size;
+		if (y > DisplayWindow.WINDOW_HEIGHT - size)
+			y = DisplayWindow.WINDOW_HEIGHT - size;
+		if (x > DisplayWindow.WINDOW_WIDTH - size)
+			x = DisplayWindow.WINDOW_WIDTH - size;
 	}
 
 	public void display() {
