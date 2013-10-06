@@ -2,7 +2,7 @@ import org.lwjgl.LWJGLException;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.*;
 
-public class DisplayTester {
+public class DisplayWindow {
 
 	Quad WASDBox = new Quad(400, 300, 25, 0);
 
