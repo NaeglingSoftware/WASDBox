@@ -138,6 +138,10 @@ public class Quad {
 			y = DisplayWindow.WINDOW_HEIGHT - size;
 		if (x > DisplayWindow.WINDOW_WIDTH - size)
 			x = DisplayWindow.WINDOW_WIDTH - size;
+		if (size < 0)
+			size = 0;
+		if (size > (Math.min(DisplayWindow.WINDOW_HEIGHT, DisplayWindow.WINDOW_WIDTH) / 2))
+			size = (Math.min(DisplayWindow.WINDOW_HEIGHT, DisplayWindow.WINDOW_WIDTH) / 2);
 	}
 
 	public void display() {
