@@ -10,10 +10,10 @@ public class Quad {
 	private double red = 100;
 	private double blue = 0;
 	private double green = 0;
-	private float moveSpeed = 0.2f;
-	private float growSpeed = 0.02f;
-	private float rotationSpeed = 0.1f;
-	private float sizeChangeSpeed = 0.2f;
+	private float moveSpeed = 2.0f;
+	private float growSpeed = 1.0f;
+	private float rotationSpeed = 1.0f;
+	private float sizeChangeSpeed = 1.0f;
 	private float slowDownRate = 4;
 
 	public Quad(int xCoord, int yCoord, int s, int r) {
