@@ -5,7 +5,7 @@ public class Quad {
 
 	private float x;
 	private float y;
-	private float size;
+	private float apothem;
 	private float rotation;
 	private double red = 100;
 	private double blue = 0;
@@ -16,10 +16,10 @@ public class Quad {
 	private float sizeChangeSpeed = 1.0f;
 	private float slowDownRate = 4;
 
-	public Quad(int xCoord, int yCoord, int s, int r) {
+	public Quad(int xCoord, int yCoord, int a, int r) {
 		x = xCoord;
 		y = yCoord;
-		size = s;
+		apothem = a;
 		rotation = r;
 	}
 
@@ -40,11 +40,11 @@ public class Quad {
 	}
 
 	public void grow(float num) {
-		size += num;
+		apothem += num;
 	}
 
 	public void shrink(float num) {
-		size -= num;
+		apothem -= num;
 	}
 
 	public void rotate(float num) {
@@ -130,18 +130,18 @@ public class Quad {
 	}
 
 	public void checkBoundaries() {
-		if (y < size)
-			y = size;
-		if (x < size)
-			x = size;
-		if (y > DisplayWindow.WINDOW_HEIGHT - size)
-			y = DisplayWindow.WINDOW_HEIGHT - size;
-		if (x > DisplayWindow.WINDOW_WIDTH - size)
-			x = DisplayWindow.WINDOW_WIDTH - size;
-		if (size < 0)
-			size = 0;
-		if (size > (Math.min(DisplayWindow.WINDOW_HEIGHT, DisplayWindow.WINDOW_WIDTH) / 2))
-			size = (Math.min(DisplayWindow.WINDOW_HEIGHT, DisplayWindow.WINDOW_WIDTH) / 2);
+		if (y < apothem)
+			y = apothem;
+		if (x < apothem)
+			x = apothem;
+		if (y > DisplayWindow.WINDOW_HEIGHT - apothem)
+			y = DisplayWindow.WINDOW_HEIGHT - apothem;
+		if (x > DisplayWindow.WINDOW_WIDTH - apothem)
+			x = DisplayWindow.WINDOW_WIDTH - apothem;
+		if (apothem < 0)
+			apothem = 0;
+		if (apothem > (Math.min(DisplayWindow.WINDOW_HEIGHT, DisplayWindow.WINDOW_WIDTH) / 2))
+			apothem = (Math.min(DisplayWindow.WINDOW_HEIGHT, DisplayWindow.WINDOW_WIDTH) / 2);
 	}
 
 	public void display() {
@@ -154,10 +154,10 @@ public class Quad {
 		GL11.glRotatef(rotation, 0f, 0f, 1f);
 		GL11.glTranslatef(-x, -y, 0);
 		GL11.glBegin(GL11.GL_QUADS);
-		GL11.glVertex2f(x - size, y - size);
-		GL11.glVertex2f(x + size, y - size);
-		GL11.glVertex2f(x + size, y + size);
-		GL11.glVertex2f(x - size, y + size);
+		GL11.glVertex2f(x - apothem, y - apothem);
+		GL11.glVertex2f(x + apothem, y - apothem);
+		GL11.glVertex2f(x + apothem, y + apothem);
+		GL11.glVertex2f(x - apothem, y + apothem);
 		GL11.glEnd();
 		GL11.glPopMatrix();
 	}
