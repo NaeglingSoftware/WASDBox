@@ -1,4 +1,5 @@
 import org.lwjgl.input.Keyboard;
+import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.GL11;
 
 public class Quad {
@@ -15,6 +16,9 @@ public class Quad {
 	private float rotationSpeed = 1.0f;
 	private float sizeChangeSpeed = 1.0f;
 	private float slowDownRate = 4;
+	private float xDistance;
+	private float yDistance;
+	private boolean followState = false;
 
 	public Quad(int xCoord, int yCoord, int a, int r) {
 		x = xCoord;
@@ -102,6 +106,27 @@ public class Quad {
 			blue = 0;
 	}
 
+	private void followMouse() {
+			if (!Mouse.isButtonDown(0) && followState) {
+				followState = false;
+			}
+			if (Mouse.isButtonDown(0) && !followState && mouseIsInBox()) {
+				xDistance = Mouse.getX() - x;
+				yDistance = Mouse.getY() - y;
+				followState = true;
+			}
+			if (Mouse.isButtonDown(0) && followState) {
+				x = Mouse.getX() - xDistance;
+				y = Mouse.getY() - yDistance;
+			}
+	}
+
+	private boolean mouseIsInBox() {
+		if((Mouse.getX() < x + apothem && Mouse.getX() > x - apothem) && (Mouse.getY() < y + apothem && Mouse.getY() > y - apothem))
+			return true;
+		return false;
+	}
+
 	public void update() {
 		if (Keyboard.isKeyDown(Keyboard.KEY_LSHIFT ) || Keyboard.isKeyDown(Keyboard.KEY_RSHIFT )) {
 			if (Keyboard.isKeyDown(Keyboard.KEY_W)) moveUp(moveSpeed / slowDownRate);
@@ -127,6 +152,7 @@ public class Quad {
 			if (Keyboard.isKeyDown(Keyboard.KEY_1)) incrementColor(sizeChangeSpeed);
 			if (Keyboard.isKeyDown(Keyboard.KEY_2)) decrementColor(sizeChangeSpeed);
 		}
+		followMouse();
 	}
 
 	public void checkBoundaries() {
